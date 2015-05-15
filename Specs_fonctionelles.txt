@@ -1,0 +1,53 @@
+///////////////////////////////////////
+// Da Movie Quizz
+///////////////////////////////////////
+
+Da Movie Quizz est un jeu très simple pour tester la culture cinématographique du joueur. A chaque tour, on présente un acteur et une affiche de film. Le joueur doit dire si l'acteur a joué dans le film présenté. A la première mauvaise réponse, le jeu s'arrête. Le jeu continue tant que le joueur donne des bonnes réponses.
+
+https://gist.github.com/nicolaschenet/9763332fbe09a2b1a39a
+
+PARTIE I - Présentation
+	A - Interface
+
+	L'interface est divisée en deux parties :
+		* En haut, un menu avec deux liens : Jouer (voir partie II) et Highscores (voir partie III).
+		* Dans le bas de la page, la page en cours : le jeu où bien les highscores.
+
+PARTIE II - Page de jeu
+	A - Interface
+		a - Etat 'Initial'
+
+		La page d'accueil du jeu constitue l'état initial. Un bouton Play est affiché au centre de l'écran. Au clic sur le bouton play, on passe à l'état 'Jeu en cours'.
+
+		b - Etat 'En cours'
+
+		Au clic sur le bouton play :
+			* La première question se lance;
+			* Le chrono se déclenche;
+			* Le score initial est à 0.
+
+		La question se compose de deux colonnes avec à gauche l'affiche du film avec en dessous le nom du film et à droite la photo de profil de l'acteur et en dessous le nom de l'acteur. Encore en dessous, les deux boutons 'Oui' et 'Non' sont affichés.
+
+		Si la réponse est bonne, on reste dans l'état 'En cours' et on incrémente le score, on tire au sort une nouvelle question.
+		Si la réponse est mauvaise on passe à l'état 'Game Over' et le chrono s'arrête.
+
+		c - Etat 'Game Over'
+
+		Le chrono s'arrête. Un game over est affiché au centre de l'écran avec en dessous le score du joueur et son temps. Si il s'agit d'un highscore, une indication 'Highscore' est affichée au dessus du score et un input pour le pseudo est demandé. Le joueur peut alors valider son highscore.
+
+		En dessous du score, un bouton 'Play Again' est affiché. En cliquant dessus, on revient à l'état 'En Cours', le chrono revient à 0 et le score revient à 0.
+
+	B - Jeu
+
+	Pour présenter au joueur un film et un acteur avec 50% de chance que l'acteur ait joué dans le film, nous allons récuperer un film parmi les film les mieux notés de IMDB (ou bien les plus populaires). Nous prenons une page au hasard dans les (score + 5) premières, de façon à ce que plus le joueur avance dans le jeu, plus il ait de chance de tomber sur des questions difficiles. (20 résultats par page, donc première question 100 films).
+
+	Nous allons récupèrer les 5 acteurs principaux du film tiré au sort.
+	Nous allons récuperer 5 acteurs parmis les acteurs les plus connus (parmi les x plus connus).
+
+	L'acteur présenté sera un des 10 acteurs ainsi tirés au sort.
+
+PARTIE III - Page Highscores
+	A - Interface
+
+	Un tableau listant les 10 meilleurs highscores est affiché avec 4 colonnes : rang, pseudo, score, chrono.
+	Le tableau est trié par score descendant et chono ascendant.

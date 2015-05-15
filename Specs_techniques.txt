@@ -1,0 +1,13 @@
+Idées en vrac :
+
+BackboneJS
+Local Storage
+
+Boostrap comme framework CSS
+Limitation à Google Chrome
+
+Sass
+Grunt
+
+Component : Timer
+Service : IMDBService
