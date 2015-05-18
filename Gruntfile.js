@@ -204,6 +204,22 @@ module.exports = function (grunt) {
                     src: 'node_modules/apache-server-configs/dist/.htaccess',
                     dest: '<%= yeoman.dist %>/.htaccess'
                 }]
+            },
+            bootstrap_fonts: {
+                 files: [{
+                    cwd: 'app/bower_components/bootstrap/dist/fonts',  // set working folder / root to copy
+                    src: '**/*',           // copy all files and subfolders
+                    dest: 'dist/fonts',    // destination folder
+                    expand: true           // required when using cwd
+                  }]
+            },
+            bootstrap_css: {
+                 files: [{
+                    cwd: 'app/bower_components/bootstrap/dist/css',  // set working folder / root to copy
+                    src: '**/*',           // copy all files and subfolders
+                    dest: 'dist/styles',    // destination folder
+                    expand: true           // required when using cwd
+                  }]
             }
         },
         jst: {
