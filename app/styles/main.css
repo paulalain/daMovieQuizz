@@ -25,6 +25,9 @@ body, html {
 
 #gameContent{
 	padding: 10px;
+	color: #555;
+	background-color: #fff;
+	border-radius: 5px;
 }
 
 .col-centered{
