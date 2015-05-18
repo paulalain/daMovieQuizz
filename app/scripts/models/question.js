@@ -30,7 +30,7 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
             Fetch a new question (fetch actor, movie and answer)
         */
         fetchNewQuestion: function(){
-            console.log("Model Question -- Fetch New Question")
+            console.info("Model Question -- Fetch New Question")
             var model = this;
 
             return new Promise(function(resolve, reject){
@@ -71,6 +71,7 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
                         reject(error);
                     })
                     .catch(function(error){
+                        console.error(error);
                         reject(error);
                     });
             });

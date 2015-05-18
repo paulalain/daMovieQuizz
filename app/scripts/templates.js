@@ -10,6 +10,18 @@ __p += '<nav class="navbar navbar-inverse">\r\n  <div class="container-fluid">\r
 return __p
 };
 
+this["JST"]["app/scripts/templates/playGame_duration.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p +=
+((__t = ( duration )) == null ? '' : __t) +
+'\r\n';
+
+}
+return __p
+};
+
 this["JST"]["app/scripts/templates/playGame_error.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
@@ -26,6 +38,8 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div class="text-center">\r\n    <p>Game Over! Sorry, that\'s not the correct answer...</p>\r\n    <p>Your score: ' +
 ((__t = ( score )) == null ? '' : __t) +
+', your time ' +
+((__t = ( duration )) == null ? '' : __t) +
 '</p>\r\n    <button id="restart" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-repeat"> </span> Play again</button>\r\n</div>';
 
 }
@@ -58,7 +72,7 @@ var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">\r\n    <div id="scoreBoard">\r\n        <span>Score: ' +
 ((__t = ( score )) == null ? '' : __t) +
-'</span>\r\n    </div>\r\n</div>\r\n<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">\r\n    <div id="gameContent">\r\n        <div >\r\n            <h3>Does this actor play in this movie?</h3>\r\n        </div>\r\n        <div class="row">\r\n            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">\r\n                <img src="' +
+'</span>\r\n        <div id="timer"></div>\r\n    </div>\r\n</div>\r\n<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">\r\n    <div id="gameContent">\r\n        <div >\r\n            <h3>Does this actor play in this movie?</h3>\r\n        </div>\r\n        <div class="row">\r\n            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">\r\n                <img src="' +
 ((__t = ( actorImage )) == null ? '' : __t) +
 '" class="img_poster" />\r\n            </div>\r\n            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">\r\n                <img src="' +
 ((__t = ( movieImage )) == null ? '' : __t) +

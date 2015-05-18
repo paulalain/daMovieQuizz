@@ -12,11 +12,10 @@ DaMovieQuizz.Routers = DaMovieQuizz.Routers || {};
         },
 
         game: function(){
-            console.log("Router -- Start Game")
+            console.info("Router -- Start Game")
             // new game
             var game = new DaMovieQuizz.Models.Game();
             var view = new DaMovieQuizz.Views.PlayGame({ el: $("#content"), model: game });
-            view.render();
         }
     });
 

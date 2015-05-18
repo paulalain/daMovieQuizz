@@ -35,7 +35,7 @@ function getRandNumber(nb){
             fetch a movie by  id
         */
         fetchById: function (id, options) {
-            console.log("Model Movie -- Fetch Movie By Id");
+            console.info("Model Movie -- Fetch Movie By Id");
             options = options || {};
             if (options.url === undefined) {
                 options.url = this.urlRoot + this.url + "/" + id + "?api_key=" + this.key;
@@ -49,7 +49,7 @@ function getRandNumber(nb){
             Get 10 first pages of top rated movies in the API and get a film by rand.
         */
         fetchByRand: function (options) {
-            console.log("Model Movie -- Fetch Movie By Rand");
+            console.info("Model Movie -- Fetch Movie By Rand");
             options = options || {};
             var model = this;
 
@@ -105,7 +105,7 @@ function getRandNumber(nb){
             fetch credits for the movie with id in parameter
         */
         fetchCredits: function (id, options) {
-            console.log("Model Movie -- Fetch Credits");
+            console.info("Model Movie -- Fetch Credits");
             options = options || {};
             var model = this;
 
@@ -133,7 +133,7 @@ function getRandNumber(nb){
             fetch one credit by rand in the first 3 for the movie with id in parameter
         */
         fetchOneCreditByRand: function(id, options){
-            console.log("Model Movie -- Fetch One Credit By Rand");
+            console.info("Model Movie -- Fetch One Credit By Rand");
             options = options || {};
             var model = this;
             return new Promise(function(resolve, reject){
@@ -141,32 +141,25 @@ function getRandNumber(nb){
                     var cast = credits.cast;
                     if(cast){
                         var maxLength = (cast.length < model.nbMaxActorMovie) ? cast.length : model.nbMaxActorMovie;
-                        var found = false;
+                        var idRand = getRandNumber(maxLength);
 
-                        // iterate to not have unknown actor with no name
-                        while(!found){
-                            var idRand = getRandNumber(maxLength);
-                            if(cast[idRand] && cast[idRand].name){
-                                found = true;
-                                
-                                // default image if there is no profile path
-                                var imagePath = model.defaultImageActor;
+                        // default image if there is no profile path
+                        var imagePath = model.defaultImageActor;
 
-                                if(cast[idRand].profile_path){
-                                    imagePath = model.url_images + cast[idRand].profile_path;
-                                }
-
-                                resolve({ 
-                                    name: cast[idRand].name, 
-                                    image: imagePath 
-                                });
-                            }
+                        if(cast[idRand] && cast[idRand].profile_path){
+                            imagePath = model.url_images + cast[idRand].profile_path;
                         }
+
+                        resolve({ 
+                            name: cast[idRand].name || "No name", 
+                            image: imagePath 
+                        });
                     }else{
                         reject("No cast for this movie.")
                     }
                     
                 }).catch(function(error){
+                    console.error(error);
                     reject(error);
                 });
             });

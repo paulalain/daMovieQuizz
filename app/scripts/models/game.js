@@ -17,6 +17,8 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
             question: null,
             state: 0, // 0 => not started, 1 => game starter, 2 => game over, 3 => error
             loading: false,
+            dateStart: null,
+            dateEnd: null
         },
 
         initialize: function(){
@@ -30,14 +32,15 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
         */
 
         startGame: function(){
-            console.log("Model Game -- Start Game");
+            console.info("Model Game -- Start Game");
             var model = this;
             if(this.get('state') == 0){
                 this.getNewQuestion(function(){
+                    model.set('dateStart', Date.now());
                     model.set('state', 1);
                 })
             }else{
-                console.log("Model Game -- Game is already launched");
+                console.info("Model Game -- Game is already launched");
             }
         },
         
@@ -48,11 +51,12 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
         */
 
         stopGame: function(){
-            console.log("Model Game -- Stop Game");
+            console.info("Model Game -- Stop Game");
             if(this.get('state') == 1){
+                this.set('dateEnd', Date.now());
                 this.set('state', 2);
             }else{
-                console.log("Model Game -- Game is not launched");
+                console.info("Model Game -- Game is not launched");
             }
         },
 
@@ -64,15 +68,16 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
         */
 
         restartGame: function(){
-            console.log("Model Game -- Retart Game");
+            console.info("Model Game -- Retart Game");
             var model = this;
             if(this.get('state') == 2 || this.get('state') == 3){
                 this.getNewQuestion(function(){
-                    model.set('state', 1);
+                    model.set('dateStart', Date.now());
                     model.set('score', 0);
+                    model.set('state', 1);
                 });
             }else{
-                console.log("Model Game -- Game is not over");
+                console.info("Model Game -- Game is not over");
             }
         },
 
@@ -83,20 +88,20 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
         */
 
         getNewQuestion: function(callback){
-            console.log("Model Game -- get New Question");
+            console.info("Model Game -- get New Question");
             var model = this;
             var question = new DaMovieQuizz.Models.Question();
             question.fetchNewQuestion().then(function(q){
                 model.set('question', q);
                 callback();
             }).catch(function(error){
-                console.log(error);
+                console.info(error);
                 model.set('state', 3);
             });
         },
 
         /*
-        incrementScoreAndFetchNewQuestion : 
+            incrementScoreAndFetchNewQuestion : 
            Get new question and increment score.
         */
 
@@ -107,7 +112,22 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
                 model.set('score', model.get('score')+1);
                 model.set('loading', false);
             });
-        }
+        },
+
+        /*
+            getDuration
+            get the duration of the game in seconds
+        */
+
+        getDuration: function(){
+            console.info("Model Game -- Get Duration")
+            if(this.get('state') == 1){
+                return Math.floor((Date.now() - this.get('dateStart'))/1000);
+            }else if(this.get('state') == 2){
+                return Math.floor((this.get('dateEnd') - this.get('dateStart'))/1000);
+            }
+            return 0;
+        },
     });
 
 })();

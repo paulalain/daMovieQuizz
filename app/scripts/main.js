@@ -1,5 +1,17 @@
 /*global DaMovieQuizz, $*/
 
+//if debug mode, console log are displayed
+var DEBUG = true;
+
+if(!DEBUG){
+    if(!window.console) window.console = {};
+
+    var methods = ["log", "debug", "warn", "info"];
+    for(var i=0;i<methods.length;i++){
+        console[methods[i]] = function(){};
+    }
+}
+
 DaMovieQuizz = (function() {
 
     var api = {
@@ -35,23 +47,6 @@ DaMovieQuizz = (function() {
             return this.menuView;
         }
     };
-
-   /*  var Router = Backbone.Router.extend({
-        routes: {
-            "": "game",
-            "highscore": "highscore"
-        },
-
-        game: function(){
-            console.log("Router -- Start Game")
-            // new game
-            var game = new api.Models.Game();
-            var view = new api.Views.PlayGame({ el: $("#content"), model: game });
-            view.render();
-        }
-    });*/
-
-    //api.router = new Router();
 
     return api;
 })();

@@ -2,8 +2,35 @@
 
 DaMovieQuizz.Views = DaMovieQuizz.Views || {};
 
+/*
+    formatDate
+    format date in 00:00:00
+*/
+function formatDate(timestamp){
+    var hours = 0;
+    var minutes = 0;
+    var seconds = 0;
+
+    hours = Math.floor(timestamp/3600);
+    minutes = Math.floor(timestamp/60);
+    seconds = timestamp % 60;
+
+    return ((hours < 10) ? '0' : '') + hours + ':'
+            + ((minutes < 10) ? '0' : '') + minutes + ':' 
+            + ((seconds < 10) ? '0' : '') + seconds;
+}
+
 (function () {
     'use strict';
+
+    /*
+        Play view
+            * view init game
+            * view play game
+            * view game over
+            * view game error
+            * view game loading
+    */
 
     DaMovieQuizz.Views.PlayGame = Backbone.View.extend({
 
@@ -18,11 +45,13 @@ DaMovieQuizz.Views = DaMovieQuizz.Views || {};
             this.listenTo(this.model, 'change:state', this.render);
             this.listenTo(this.model, 'change:loading', this.renderLoading);
 
-            //Render game view
+            // inner view timer
+            this.inner = new DaMovieQuizz.Views.TimerInnerView({ model : this.model });
             this.render();
         },
 
         render: function(){
+            $("#timer").empty();
             if(this.model.get('state') == 0){
                 this.$el.html(this.template_init({}));
             }else if (this.model.get('state') == 1){
@@ -31,11 +60,14 @@ DaMovieQuizz.Views = DaMovieQuizz.Views || {};
                                                     movieTitle: this.model.get('question').get('movie').name,
                                                     movieImage: this.model.get('question').get('movie').image,
                                                     actorName: this.model.get('question').get('actor').name,
-                                                    actorImage: this.model.get('question').get('actor').image
+                                                    actorImage: this.model.get('question').get('actor').image,
                                                 }));
+                $("#timer").append(this.inner.$el);
+                this.inner.render();
             }else if(this.model.get('state') == 2){
                 this.$el.html(this.template_game_over({
                                                          score: this.model.get('score'), 
+                                                         duration: formatDate(this.model.getDuration()),
                                                      }));
             }else{
                  this.$el.html(this.template_error());
@@ -60,31 +92,64 @@ DaMovieQuizz.Views = DaMovieQuizz.Views || {};
             "click #no": "clickNo",
             "click #restart": "restart"
         },
+
         startGame: function(){
-            console.log("View Game -- Start Game")
+            console.info("View Game -- Start Game")
             this.model.startGame();
         },
+
         restart: function(){
-            console.log("View Game -- Restart Game")
+            console.info("View Game -- Restart Game")
             this.model.restartGame();
         },
+
         clickYes: function() {
-            console.log("View Game -- Yes Clicked")
+            console.info("View Game -- Yes Clicked")
             this.clickAnswer(true);
         },
+
         clickNo: function() {
-            console.log("View Game -- No Clicked")
+            console.info("View Game -- No Clicked")
             this.clickAnswer(false);
         },
+
         clickAnswer: function(value){
-            console.log("PlayGame View -- Click Answer");
+            console.info("PlayGame View -- Click Answer");
             if(this.model.get('question').validateAnswer(value)){
                 // continue
-                console.log("PlayGame View -- Correct Answer")
+                console.info("PlayGame View -- Correct Answer")
                 this.model.incrementScoreAndFetchNewQuestion();
             }else{
-                console.log("PlayGame View -- Wrong Answer")
+                console.info("PlayGame View -- Wrong Answer")
                 this.model.stopGame();
+            }
+        }
+    });
+
+    
+    /*
+        Inner view for the timer
+    */
+
+    DaMovieQuizz.Views.TimerInnerView = Backbone.View.extend({
+        template_duration: JST['app/scripts/templates/playGame_duration.ejs'],
+
+        initialize: function(){
+        },
+
+        render: function() {
+            if (this.model.get('state') == 1){
+                console.info("View Play Game -- Render timer")
+                // only if we are in game mode
+                var object = this;
+
+                this.$el.html(this.template_duration({
+                                                 duration: formatDate(this.model.getDuration()),
+                                             }));
+                // call render in 1s
+                setTimeout(function(){ 
+                    object.render();
+                }, 1000);
             }
         }
     });
