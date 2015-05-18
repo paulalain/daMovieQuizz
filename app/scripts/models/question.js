@@ -2,6 +2,10 @@
 
 DaMovieQuizz.Models = DaMovieQuizz.Models || {};
 
+/*
+    Model Question
+    Represent a question with actor, movie and answer
+*/
 (function () {
     'use strict';
 
@@ -13,11 +17,18 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
             correctAnswer: false
         },
         
-        // discard save if pseudo is empty
+        /*
+            validateAnswer
+            Return true if the answer is correct
+        */
         validateAnswer: function(answer){
             return (this.attributes.correctAnswer == answer);
         },
 
+        /*
+            fetchNewQuestion
+            Fetch a new question (fetch actor, movie and answer)
+        */
         fetchNewQuestion: function(){
             console.log("Model Question -- Fetch New Question")
             var model = this;

@@ -2,6 +2,11 @@
 
 DaMovieQuizz.Models = DaMovieQuizz.Models || {};
 
+/*
+	MovieApi
+	Configuration for api moviedb
+*/
+
 (function () {
     'use strict';
 

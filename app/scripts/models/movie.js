@@ -12,6 +12,11 @@ function getRandNumber(nb){
     return Math.floor(Math.random() * nb);
 }
 
+/*
+    Movie model
+    Call Movie API db for all request concerning movies and credits
+*/
+
 (function () {
     'use strict';
 
@@ -26,6 +31,9 @@ function getRandNumber(nb){
         pageMovies: 10, // pages number of top rated movies (increase and the game will be harder)
         nbMaxActorMovie: 3, // number of actors to retrieve of credits (increase and the game will be harder)
 
+        /*
+            fetch a movie by  id
+        */
         fetchById: function (id, options) {
             console.log("Model Movie -- Fetch Movie By Id");
             options = options || {};
@@ -36,6 +44,10 @@ function getRandNumber(nb){
             return Backbone.Model.prototype.fetch.call(this, options);
         },
 
+        /*
+            fetch a movie by rand
+            Get 10 first pages of top rated movies in the API and get a film by rand.
+        */
         fetchByRand: function (options) {
             console.log("Model Movie -- Fetch Movie By Rand");
             options = options || {};
@@ -88,6 +100,10 @@ function getRandNumber(nb){
             });
         },
 
+        /*
+            fetchCredits
+            fetch credits for the movie with id in parameter
+        */
         fetchCredits: function (id, options) {
             console.log("Model Movie -- Fetch Credits");
             options = options || {};
@@ -112,6 +128,10 @@ function getRandNumber(nb){
             });
         },
 
+        /*
+            fetchOneCreditByRand
+            fetch one credit by rand in the first 3 for the movie with id in parameter
+        */
         fetchOneCreditByRand: function(id, options){
             console.log("Model Movie -- Fetch One Credit By Rand");
             options = options || {};
@@ -152,5 +172,4 @@ function getRandNumber(nb){
             });
         }
     });
-
 })();
