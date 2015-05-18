@@ -6,7 +6,7 @@ DaMovieQuizz = (function() {
         Models: {},
         Collections: {},
         Views: {},
-        router: null,
+        Routers: {},
         content: null,
 
         init: function () {
@@ -16,12 +16,10 @@ DaMovieQuizz = (function() {
             // initialize menu
             ViewsFactory.menu();
 
-            Backbone.history.start();
-            return this;
-        },
+            // initialize router
+            new DaMovieQuizz.Routers.Router();
 
-        changePage: function(el) {
-            this.content.empty().append(el);
+            Backbone.history.start();
             return this;
         }
     };
@@ -38,7 +36,7 @@ DaMovieQuizz = (function() {
         }
     };
 
-     var Router = Backbone.Router.extend({
+   /*  var Router = Backbone.Router.extend({
         routes: {
             "": "game",
             "highscore": "highscore"
@@ -48,13 +46,12 @@ DaMovieQuizz = (function() {
             console.log("Router -- Start Game")
             // new game
             var game = new api.Models.Game();
-            var view = new api.Views.PlayGame({ model: game });
-            api.changePage(view.$el);
+            var view = new api.Views.PlayGame({ el: $("#content"), model: game });
             view.render();
         }
-    });
+    });*/
 
-    api.router = new Router();
+    //api.router = new Router();
 
     return api;
 })();
