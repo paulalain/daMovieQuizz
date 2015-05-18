@@ -13,3 +13,12 @@ Prerequisites:
   * Grunt (install: `npm install -g grunt-cli`)
 
 
+Install:
+ * `npm install`
+ * `bower install`
+ * `grunt build`
+ * copy dist directory to server
+
+Test:
+	
+	* `grunt test`

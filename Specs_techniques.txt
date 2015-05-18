@@ -1,13 +1,20 @@
-Idées en vrac :
+Yeoman
+Backbone.js
+jst templates
+Bootstrap pour le framework CSS
+Mocha pour les tests
 
-BackboneJS
-Local Storage
 
-Boostrap comme framework CSS
-Limitation à Google Chrome
+v0.1 : 
 
-Sass
-Grunt
+* Jeu normal en mode survivor
 
-Component : Timer
-Service : IMDBService
+v0.2 :
+
+* Ajout du timer
+
+v0.3 :
+
+* Ajout de l'enregistrement du highscore
+* Liste des highscores
+* Notification de highscore

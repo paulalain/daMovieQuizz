@@ -39,12 +39,10 @@ PARTIE II - Page de jeu
 
 	B - Jeu
 
-	Pour présenter au joueur un film et un acteur avec 50% de chance que l'acteur ait joué dans le film, nous allons récuperer un film parmi les film les mieux notés de IMDB (ou bien les plus populaires). Nous prenons une page au hasard dans les (score + 5) premières, de façon à ce que plus le joueur avance dans le jeu, plus il ait de chance de tomber sur des questions difficiles. (20 résultats par page, donc première question 100 films).
+	Pour présenter au joueur un film et un acteur avec 50% de chance que l'acteur ait joué dans le film, nous allons récuperer un film parmi les film les mieux notés de IMDB (ou bien les plus populaires). Nous prenons une page au hasard dans les 20 premières.
 
-	Nous allons récupèrer les 5 acteurs principaux du film tiré au sort.
-	Nous allons récuperer 5 acteurs parmis les acteurs les plus connus (parmi les x plus connus).
-
-	L'acteur présenté sera un des 10 acteurs ainsi tirés au sort.
+	Nous allons récupèrer les 3 acteurs principaux du film tiré au sort. On tire au sort l'un des 3 acteurs.
+	Nous générons un booléen, si vrai nous présentons le vrai acteur (la recherche dans l'api en reste là), si faux nous cherchons un autre film au hasard avec un acteur au hasard et on le présente au joueur.
 
 PARTIE III - Page Highscores
 	A - Interface

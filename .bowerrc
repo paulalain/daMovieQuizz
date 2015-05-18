@@ -1,0 +1,5 @@
+{
+    "directory": "app/bower_components",
+    "https-proxy":"proxy.groupinfra.com:3128",
+    "proxy":"proxy.groupinfra.com:3128"
+}

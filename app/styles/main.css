@@ -1,0 +1,33 @@
+body, html {
+	font-family: Helvetica, sans-serif;
+	background-color: #3179B5;
+	height: 100%;
+	background-image: radial-gradient(circle, #269, #274256);
+	background-image: -webkit-radial-gradient(circle, #269, #274256);
+	margin: 10px;
+}
+
+#content{
+	color: #fff;
+}
+
+.img_poster{
+	width: 200px;
+	border-radius: 5px;
+}
+
+#scoreBoard{
+	/*border-radius: 5px;
+	background: #fff;
+	color: #555;*/
+	padding: 10px;
+}
+
+#gameContent{
+	padding: 10px;
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
