@@ -1,0 +1,21 @@
+<div id="highscore-div">
+	<h1>Hall of fame</h1>
+	<table class="table table-striped">
+		<tr>
+			<th>#</th>
+			<th>Pseudo</th>
+			<th>Score</th>
+			<th>Duration</th>
+		</tr>
+		<tbody>
+			<% _.each(highscores, function(highscore){ %>
+			    <tr>
+			    	<td>#</td>
+			    	<td><%= highscore.get('pseudo') %></td>
+			    	<td><%= highscore.get('score') %></td>
+			    	<td><%= highscore.get('duration') %></td>
+			    </tr>
+			<% }); %>
+		</tbody>
+	</table>
+</div>

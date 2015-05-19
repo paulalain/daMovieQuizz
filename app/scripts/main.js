@@ -1,7 +1,7 @@
 /*global DaMovieQuizz, $*/
 
 //if debug mode, console log are displayed
-var DEBUG = false;
+var DEBUG = true;
 
 if(!DEBUG){
     if(!window.console) window.console = {};
@@ -19,11 +19,12 @@ DaMovieQuizz = (function() {
         Collections: {},
         Views: {},
         Routers: {},
-        content: null,
+        page: null,
 
         init: function () {
-            this.content = $("#content");
             'use strict';
+            // initialize page
+            this.page = new DaMovieQuizz.Models.Page();
 
             // initialize menu
             ViewsFactory.menu();
@@ -41,7 +42,8 @@ DaMovieQuizz = (function() {
         menu: function() {
             if(!this.menuView) {
                 this.menuView = new api.Views.Menu({ 
-                    el: $("#menu") 
+                    el: $("#menu") ,
+                    model: DaMovieQuizz.page
                 });
             }
             return this.menuView;

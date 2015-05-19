@@ -1,10 +1,35 @@
 this["JST"] = this["JST"] || {};
 
+this["JST"]["app/scripts/templates/highscores.ejs"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+__p += '<div id="highscore-div">\n\t<h1>Hall of fame</h1>\n\t<table class="table table-striped">\n\t\t<tr>\n\t\t\t<th>#</th>\n\t\t\t<th>Pseudo</th>\n\t\t\t<th>Score</th>\n\t\t\t<th>Duration</th>\n\t\t</tr>\n\t\t<tbody>\n\t\t\t';
+ _.each(highscores, function(highscore){ ;
+__p += '\n\t\t\t    <tr>\n\t\t\t    \t<td>#</td>\n\t\t\t    \t<td>' +
+((__t = ( highscore.get('pseudo') )) == null ? '' : __t) +
+'</td>\n\t\t\t    \t<td>' +
+((__t = ( highscore.get('score') )) == null ? '' : __t) +
+'</td>\n\t\t\t    \t<td>' +
+((__t = ( highscore.get('duration') )) == null ? '' : __t) +
+'</td>\n\t\t\t    </tr>\n\t\t\t';
+ }); ;
+__p += '\n\t\t</tbody>\n\t</table>\n</div>';
+
+}
+return __p
+};
+
 this["JST"]["app/scripts/templates/menu.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<nav class="navbar navbar-inverse">\r\n  <div class="container-fluid">\r\n    <!-- Brand and toggle get grouped for better mobile display -->\r\n    <div class="navbar-header">\r\n      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">\r\n        <span class="sr-only">Toggle navigation</span>\r\n        <span class="icon-bar"></span>\r\n        <span class="icon-bar"></span>\r\n        <span class="icon-bar"></span>\r\n      </button>\r\n      <a class="navbar-brand" href="#">Da Movie Quizz</a>\r\n    </div>\r\n\r\n    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\r\n      <ul class="nav navbar-nav">\r\n          <li role="presentation" class="active"><a href="#">Jouer</a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</nav>';
+__p += '<nav class="navbar navbar-inverse">\r\n  <div class="container-fluid">\r\n    <!-- Brand and toggle get grouped for better mobile display -->\r\n    <div class="navbar-header">\r\n      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">\r\n        <span class="sr-only">Toggle navigation</span>\r\n        <span class="icon-bar"></span>\r\n        <span class="icon-bar"></span>\r\n        <span class="icon-bar"></span>\r\n      </button>\r\n      <a class="navbar-brand" href="#">Da Movie Quizz</a>\r\n    </div>\r\n\r\n    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\r\n      <ul class="nav navbar-nav">\r\n          <li role="presentation" class="' +
+((__t = ( page == 'playGame' ?  'active' : '' )) == null ? '' : __t) +
+'"><a href="#">Jouer</a></li>\r\n          <li role="presentation" class="' +
+((__t = ( page == 'highscores' ?  'active' : '' )) == null ? '' : __t) +
+'"><a href="#highscores">Highscores</a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</nav>';
 
 }
 return __p
@@ -60,7 +85,7 @@ this["JST"]["app/scripts/templates/playGame_loading.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="col-centered">\r\n\t<p>\r\n\t\tLoading...\r\n\t</p>\r\n</div>';
+__p += '<div class="text-center">\r\n\t<p>\r\n\t\tLoading...\r\n\t</p>\r\n</div>';
 
 }
 return __p

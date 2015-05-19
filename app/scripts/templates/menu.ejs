@@ -13,7 +13,8 @@
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-          <li role="presentation" class="active"><a href="#">Jouer</a></li>
+          <li role="presentation" class="<%= (page == 'playGame') ?  'active' : '' %>"><a href="#">Jouer</a></li>
+          <li role="presentation" class="<%= (page == 'highscores') ?  'active' : '' %>"><a href="#highscores">Highscores</a></li>
       </ul>
     </div>
   </div>

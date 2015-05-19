@@ -41,6 +41,10 @@ function formatDate(timestamp){
         template_loading: JST['app/scripts/templates/playGame_loading.ejs'],
 
        initialize: function() {
+            //empty content div
+            this.$el.empty();
+
+            //set listeners
             this.listenTo(this.model, 'change:score', this.render);
             this.listenTo(this.model, 'change:state', this.render);
             this.listenTo(this.model, 'change:loading', this.renderLoading);

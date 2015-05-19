@@ -15,10 +15,16 @@ DaMovieQuizz.Views = DaMovieQuizz.Views || {};
         template: JST['app/scripts/templates/menu.ejs'],
 
         initialize: function() {
+            //set listeners
+            this.listenTo(this.model, 'change:page', this.render);
+
             this.render();
         },
+
         render: function(){
-            this.$el.html(this.template({}));
+            console.info("Menu view -- Render");
+            console.info(this.model);
+            this.$el.html(this.template({ page : this.model.get('page') }));
         }
     });
 

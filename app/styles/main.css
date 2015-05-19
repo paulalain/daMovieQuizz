@@ -7,10 +7,6 @@ body, html {
 	margin: 10px;
 }
 
-#content{
-	color: #fff;
-}
-
 .img_poster{
 		width: 75px;
 		border-radius: 2px;
@@ -32,9 +28,10 @@ body, html {
 #scoreBoard{
 	padding: 10px;
 	font-size: 18px;
+	color: #fff;
 }
 
-#gameContent{
+#gameContent, #highscore-div{
 	padding: 10px;
 	color: #555;
 	background-color: #fff;

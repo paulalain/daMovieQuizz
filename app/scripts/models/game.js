@@ -33,11 +33,14 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
 
         startGame: function(){
             console.info("Model Game -- Start Game");
+            
+            this.set('loading', true);
             var model = this;
             if(this.get('state') == 0){
                 this.getNewQuestion(function(){
                     model.set('dateStart', Date.now());
                     model.set('state', 1);
+                    model.set('loading', false);
                 })
             }else{
                 console.info("Model Game -- Game is already launched");
