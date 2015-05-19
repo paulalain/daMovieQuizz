@@ -88,9 +88,8 @@ function getRandNumber(nb){
                                     });
                                 }
                             }
-                            
                         }else{
-                            reject(new Error("No result in the PAI search result."))
+                            reject(new Error("No result in the API search result."))
                         }
                     },
                     error: function(data){
@@ -150,8 +149,14 @@ function getRandNumber(nb){
                             imagePath = model.url_images + cast[idRand].profile_path;
                         }
 
+                        // case there is no actor in the movie, we present an actor with No actor name
+                        var name = "No actor name";
+                        if(cast[idRand] && cast[idRand].name){
+                            name = cast[idRand].name;
+                        }
+
                         resolve({ 
-                            name: cast[idRand].name || "No name", 
+                            name: name, 
                             image: imagePath 
                         });
                     }else{

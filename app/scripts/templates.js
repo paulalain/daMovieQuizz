@@ -70,7 +70,7 @@ this["JST"]["app/scripts/templates/playGame_play.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">\r\n    <div id="scoreBoard">\r\n        <span>Score: ' +
+__p += '<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 text-center">\r\n    <div id="scoreBoard">\r\n        <span>Score: ' +
 ((__t = ( score )) == null ? '' : __t) +
 '</span>\r\n        <div id="timer"></div>\r\n    </div>\r\n</div>\r\n<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">\r\n    <div id="gameContent">\r\n        <div >\r\n            <h3>Does this actor play in this movie?</h3>\r\n        </div>\r\n        <div class="row">\r\n            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">\r\n                <img src="' +
 ((__t = ( actorImage )) == null ? '' : __t) +

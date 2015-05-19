@@ -21,3 +21,9 @@ Install:
 Tests:
 	
 	* `grunt test`
+
+========
+
+Version 0.2 déployée
+
+http://dmq.hol.es/

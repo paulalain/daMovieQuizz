@@ -12,15 +12,26 @@ body, html {
 }
 
 .img_poster{
-	width: 200px;
-	border-radius: 5px;
+		width: 75px;
+		border-radius: 2px;
+	}
+
+@media (min-width: 360px){ 
+	.img_poster{
+		width: 100px;
+		border-radius: 2px;
+	}
+}
+@media (min-width: 768px){ 
+ 	.img_poster{
+		width: 200px;
+		border-radius: 5px;
+	} 
 }
 
 #scoreBoard{
-	/*border-radius: 5px;
-	background: #fff;
-	color: #555;*/
 	padding: 10px;
+	font-size: 18px;
 }
 
 #gameContent{
