@@ -1,21 +1,25 @@
 <div id="highscore-div">
-	<h1>Hall of fame</h1>
-	<table class="table table-striped">
-		<tr>
-			<th>#</th>
-			<th>Pseudo</th>
-			<th>Score</th>
-			<th>Duration</th>
-		</tr>
-		<tbody>
-			<% _.each(highscores, function(highscore){ %>
-			    <tr>
-			    	<td>#</td>
-			    	<td><%= highscore.get('pseudo') %></td>
-			    	<td><%= highscore.get('score') %></td>
-			    	<td><%= highscore.get('duration') %></td>
-			    </tr>
-			<% }); %>
-		</tbody>
-	</table>
+	<h1>Da Movie Hall of fame</h1>
+	<% if(highscores.length > 0) { %>
+		<table class="table table-striped">
+			<tr>
+				<th>#</th>
+				<th>Pseudo</th>
+				<th>Score</th>
+				<th>Duration</th>
+			</tr>
+			<tbody>
+				<% _.each(highscores, function(highscore){ %>
+				    <tr>
+				    	<td><%= index++ %></td>
+				    	<td><%= highscore.get('pseudo') %></td>
+				    	<td><%= highscore.get('score') %></td>
+				    	<td><%= formatDate(highscore.get('duration')) %></td>
+				    </tr>
+				<% }); %>
+			</tbody>
+		</table>
+	<% }else{ %>
+		<p>No highscore yet.</p>
+	<% } %>
 </div>

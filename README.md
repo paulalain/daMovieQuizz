@@ -16,10 +16,15 @@ Install:
  * `bower install`
  * `grunt build`
 
- * copy dist directory to server
+Launch server:
+
+ * `npm install`
+ * `bower install`
+ * `grunt serve`
 
 Tests:
-	
+	* `cd test`
+	* `bower install`
 	* `grunt test`
 
 ========

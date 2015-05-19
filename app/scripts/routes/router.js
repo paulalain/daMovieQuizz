@@ -15,17 +15,18 @@ DaMovieQuizz.Routers = DaMovieQuizz.Routers || {};
             if(!this.gameView){
                 this.gameView = new DaMovieQuizz.Views.PlayGame({ 
                     el: $("#content"), 
-                    model: DaMovieQuizz.game 
+                    model: DaMovieQuizz.game,
+                    collection: DaMovieQuizz.highscores,
                 });
             }
             return this.gameView.render();
         },
         
-        highscore: function(highscores){
+        highscore: function(){
             if(!this.highscoreView){
-                this.highscoreView = new new DaMovieQuizz.Views.Highscores({ 
+                this.highscoreView = new DaMovieQuizz.Views.Highscores({ 
                     el: $("#content"), 
-                    collection: highscores 
+                    collection: DaMovieQuizz.highscores 
                 });
             }
             return this.highscoreView.render();
@@ -49,13 +50,11 @@ DaMovieQuizz.Routers = DaMovieQuizz.Routers || {};
 
         highscores: function(){
             console.info("Router -- Highscores")
-            // new game
-            var highscores = new DaMovieQuizz.Collections.Highscores();
 
             //change page
             DaMovieQuizz.page.set('page', 'highscores');
 
-             var view =  ViewsFactory.highscore(highscores);
+             var view =  ViewsFactory.highscore();
         }, 
     });
 

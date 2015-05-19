@@ -13,14 +13,6 @@ DaMovieQuizz.Views = DaMovieQuizz.Views || {};
 
         template: JST['app/scripts/templates/highscores.ejs'],
 
-        tagName: 'div',
-
-        id: '',
-
-        className: '',
-
-        events: {},
-
         initialize: function () {
             console.info("View Highscores -- Initialize");
 
@@ -31,7 +23,10 @@ DaMovieQuizz.Views = DaMovieQuizz.Views || {};
 
         render: function () {
             console.info("View Highscores -- Render");
-            this.$el.html(this.template({ highscores: this.collection.models }));
+            this.$el.html(this.template({ 
+                                        index: 1, //rank start at 1
+                                        highscores: this.collection.first(10) //display only the first 10
+            }));
         }
 
     });

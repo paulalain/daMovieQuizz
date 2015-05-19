@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "dependencies": {
     "backbone": "^1.2.0",
+    "backbone-localstorage": "^0.3.2",
     "backbone.localstorage": "^1.1.16"
   },
   "devDependencies": {

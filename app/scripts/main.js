@@ -21,6 +21,7 @@ DaMovieQuizz = (function() {
         Routers: {},
         page: null,
         game: null,
+        highscores: null,
 
         init: function () {
             'use strict';
@@ -28,8 +29,11 @@ DaMovieQuizz = (function() {
             // initialize page
             this.page = new DaMovieQuizz.Models.Page();
 
-            //initialize game
+            //initialize game one
             this.game = new DaMovieQuizz.Models.Game();
+
+            //initialize highscore once
+            this.highscores = new DaMovieQuizz.Collections.Highscores();
 
             // initialize menu
             ViewsFactory.menu();

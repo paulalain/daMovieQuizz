@@ -5,17 +5,19 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
 function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<div id="highscore-div">\n\t<h1>Hall of fame</h1>\n\t<table class="table table-striped">\n\t\t<tr>\n\t\t\t<th>#</th>\n\t\t\t<th>Pseudo</th>\n\t\t\t<th>Score</th>\n\t\t\t<th>Duration</th>\n\t\t</tr>\n\t\t<tbody>\n\t\t\t';
+__p += '<div id="highscore-div">\r\n\t<h1>Hall of fame</h1>\r\n\t<table class="table table-striped">\r\n\t\t<tr>\r\n\t\t\t<th>#</th>\r\n\t\t\t<th>Pseudo</th>\r\n\t\t\t<th>Score</th>\r\n\t\t\t<th>Duration</th>\r\n\t\t</tr>\r\n\t\t<tbody>\r\n\t\t\t';
  _.each(highscores, function(highscore){ ;
-__p += '\n\t\t\t    <tr>\n\t\t\t    \t<td>#</td>\n\t\t\t    \t<td>' +
+__p += '\r\n\t\t\t    <tr>\r\n\t\t\t    \t<td>' +
+((__t = ( index++ )) == null ? '' : __t) +
+'</td>\r\n\t\t\t    \t<td>' +
 ((__t = ( highscore.get('pseudo') )) == null ? '' : __t) +
-'</td>\n\t\t\t    \t<td>' +
+'</td>\r\n\t\t\t    \t<td>' +
 ((__t = ( highscore.get('score') )) == null ? '' : __t) +
-'</td>\n\t\t\t    \t<td>' +
-((__t = ( highscore.get('duration') )) == null ? '' : __t) +
-'</td>\n\t\t\t    </tr>\n\t\t\t';
+'</td>\r\n\t\t\t    \t<td>' +
+((__t = ( formatDate(highscore.get('duration')) )) == null ? '' : __t) +
+'</td>\r\n\t\t\t    </tr>\r\n\t\t\t';
  }); ;
-__p += '\n\t\t</tbody>\n\t</table>\n</div>';
+__p += '\r\n\t\t</tbody>\r\n\t</table>\r\n</div>';
 
 }
 return __p
@@ -59,9 +61,20 @@ return __p
 
 this["JST"]["app/scripts/templates/playGame_game_over.ejs"] = function(obj) {
 obj || (obj = {});
-var __t, __p = '', __e = _.escape;
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<div class="text-center game-over">\r\n    <p>Game Over! Sorry, that\'s not the correct answer...</p>\r\n    <p>Your score: ' +
+__p += '<div class="text-center game-over">\r\n    <p>Game Over! Sorry, that\'s not the correct answer...</p>\r\n    ';
+ if(isHighscore){ ;
+__p += '\r\n\t\t<p class="highscore-winner">Congratulations! You are in the top ten!</p>\r\n\t\t';
+ if (!isScoreSubmitted){ ;
+__p += '\r\n\t\t\t<form class="form-inline" action="javascript:void(0)">\r\n\t\t\t\t<div class="form-group">\r\n\t\t\t\t\t<input type="text" class="form-control" id="inputPseudo" placeholder="Pseudo">\r\n\t\t\t\t</div>\r\n\t\t\t\t<button type="submit" class="btn btn-default" id="submitScore">Submit your score</button>\r\n\t\t\t</form>\r\n\t\t';
+ }else{ ;
+__p += '\r\n\t\t\t<p>The highscore has been submitted.</p>\r\n\t\t';
+ } ;
+__p += '\r\n    ';
+ } ;
+__p += '\r\n    <p class="finalScore">Your score: ' +
 ((__t = ( score )) == null ? '' : __t) +
 ', your time ' +
 ((__t = ( duration )) == null ? '' : __t) +
@@ -93,9 +106,14 @@ return __p
 
 this["JST"]["app/scripts/templates/playGame_play.ejs"] = function(obj) {
 obj || (obj = {});
-var __t, __p = '', __e = _.escape;
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 text-center">\r\n    <div id="scoreBoard">\r\n        <span>Score: ' +
+__p += '<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2 text-center">\r\n    <div id="scoreBoard">\r\n        ';
+ if(isHighscore){ ;
+__p += '\r\n            <span>New highscore!</span>\r\n        ';
+ } ;
+__p += '\r\n        <span>Score: ' +
 ((__t = ( score )) == null ? '' : __t) +
 '</span>\r\n        <div id="timer"></div>\r\n    </div>\r\n</div>\r\n<div class="col-xs-12 col-sm-10 col-md-10 col-lg-10">\r\n    <div id="gameContent">\r\n        <div >\r\n            <h3>Does this actor play in this movie?</h3>\r\n        </div>\r\n        <div class="row">\r\n            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-center">\r\n                <img src="' +
 ((__t = ( actorImage )) == null ? '' : __t) +

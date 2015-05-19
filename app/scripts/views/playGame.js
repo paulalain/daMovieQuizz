@@ -44,6 +44,10 @@ function formatDate(timestamp){
             //empty content div
             this.$el.empty();
 
+            //set vars to control form
+            this.error = "";
+            this.isScoreSubmitted = false;
+
             //set listeners
             this.listenTo(this.model, 'change:score', this.render);
             this.listenTo(this.model, 'change:state', this.render);
@@ -55,13 +59,14 @@ function formatDate(timestamp){
         },
 
         render: function(){
-            if(!this.model.get('loading')){
+            if(!this.model.get('loading') && this.model.get('state') != 3){
                 $("#timer").empty();
                 if(this.model.get('state') == 0){
                     this.$el.html(this.template_init({}));
                 }else if (this.model.get('state') == 1){
                     this.$el.html(this.template_play({ 
                                                         score: this.model.get('score'), 
+                                                        isHighscore: this.collection.isHighscore(this.model.get('score')), 
                                                         movieTitle: this.model.get('question').get('movie').name,
                                                         movieImage: this.model.get('question').get('movie').image,
                                                         actorName: this.model.get('question').get('actor').name,
@@ -73,6 +78,8 @@ function formatDate(timestamp){
                     this.$el.html(this.template_game_over({
                                                              score: this.model.get('score'), 
                                                              duration: formatDate(this.model.getDuration()),
+                                                             isHighscore: this.collection.isTopTenHighscore(this.model.get('score'), this.model.get('duration')),
+                                                             isScoreSubmitted: this.isScoreSubmitted
                                                          }));
                 }else{
                      this.$el.html(this.template_error());
@@ -88,16 +95,19 @@ function formatDate(timestamp){
             "click #startgame": "startGame",
             "click #yes": "clickYes",
             "click #no": "clickNo",
-            "click #restart": "restart"
+            "click #restart": "restart",
+            "click #submitScore": "saveScore"
         },
 
         startGame: function(){
             console.info("View Game -- Start Game")
+            this.isScoreSubmitted = false;
             this.model.startGame();
         },
 
         restart: function(){
             console.info("View Game -- Restart Game")
+            this.isScoreSubmitted = false;
             this.model.restartGame();
         },
 
@@ -120,6 +130,24 @@ function formatDate(timestamp){
             }else{
                 console.info("PlayGame View -- Wrong Answer")
                 this.model.stopGame();
+            }
+        },
+        saveScore: function(){
+            console.info("View Game -- Save score")
+            //only in game over state
+            if(this.isScoreSubmitted){
+                this.error = "Score is already submitted";
+            }else if(this.model.get('state') == 2){ 
+                if($("#inputPseudo").val()){
+                    console.info("View Game -- Create highscore")
+                    this.collection.create({ 
+                                        pseudo: $("#inputPseudo").val(), 
+                                        score: this.model.get('score'),
+                                        duration: this.model.getDuration(),
+                                     });
+                    this.isScoreSubmitted = true;
+                    this.render();
+                }
             }
         }
     });
