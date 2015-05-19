@@ -28,6 +28,6 @@ Tests:
 
 ========
 
-Version 0.2 déployée
+Version 0.3 déployée (tag v0.3)
 
 http://dmq.hol.es/
