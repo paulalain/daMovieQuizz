@@ -1,11 +1,6 @@
 /*global beforeEach, describe, it, assert, expect  */
 'use strict';
 
-function sleep(milliseconds){
-    var waitUntil = new Date().getTime() + milliseconds;
-    while(new Date().getTime() < waitUntil) true;
-}
-
 describe('Game Model', function () {
 
     beforeEach(function () {
@@ -45,7 +40,7 @@ describe('Game Model', function () {
         it('score > 0', function () {
           this.GameModel.startGame();
           this.GameModel.incrementScoreAndFetchNewQuestion();
-          assert.isAbove(this.GameModel.get('state'), 0);
+          assert.equal(this.GameModel.get('state'), 1);
         });
 	});
 });
