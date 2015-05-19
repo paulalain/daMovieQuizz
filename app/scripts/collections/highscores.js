@@ -18,8 +18,12 @@ DaMovieQuizz.Collections = DaMovieQuizz.Collections || {};
             this.fetch();
         },
 
-        comparator: function(highscore){
-        	return -highscore.get('score');
+        comparator: function(highscore1, highscore2){
+            if(highscore1.get('score') == highscore2.get('score')){
+                return highscore1.get('duration') - highscore2.get('duration')
+            }else{
+                return highscore2.get('score') - highscore1.get('score')
+            }
         },
 
         /*
