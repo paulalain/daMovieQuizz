@@ -31,7 +31,6 @@ DaMovieQuizz.Views = DaMovieQuizz.Views || {};
 
         render: function () {
             console.info("View Highscores -- Render");
-            console.log(this.collection.models);
             this.$el.html(this.template({ highscores: this.collection.models }));
         }
 

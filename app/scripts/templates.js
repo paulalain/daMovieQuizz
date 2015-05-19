@@ -26,9 +26,9 @@ obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
 __p += '<nav class="navbar navbar-inverse">\r\n  <div class="container-fluid">\r\n    <!-- Brand and toggle get grouped for better mobile display -->\r\n    <div class="navbar-header">\r\n      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">\r\n        <span class="sr-only">Toggle navigation</span>\r\n        <span class="icon-bar"></span>\r\n        <span class="icon-bar"></span>\r\n        <span class="icon-bar"></span>\r\n      </button>\r\n      <a class="navbar-brand" href="#">Da Movie Quizz</a>\r\n    </div>\r\n\r\n    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\r\n      <ul class="nav navbar-nav">\r\n          <li role="presentation" class="' +
-((__t = ( page == 'playGame' ?  'active' : '' )) == null ? '' : __t) +
+((__t = ( (page == 'playGame') ?  'active' : '' )) == null ? '' : __t) +
 '"><a href="#">Jouer</a></li>\r\n          <li role="presentation" class="' +
-((__t = ( page == 'highscores' ?  'active' : '' )) == null ? '' : __t) +
+((__t = ( (page == 'highscores') ?  'active' : '' )) == null ? '' : __t) +
 '"><a href="#highscores">Highscores</a></li>\r\n      </ul>\r\n    </div>\r\n  </div>\r\n</nav>';
 
 }
@@ -51,7 +51,7 @@ this["JST"]["app/scripts/templates/playGame_error.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="text-center">\r\n    <p>An error occured, please try to play later...</p>\r\n    <button id="restart" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-repeat"> </span> Play again</button>\r\n</div>';
+__p += '<div class="text-center error">\r\n    <p>An error occured, please try to play later...</p>\r\n    <button id="restart" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-repeat"> </span> Play again</button>\r\n</div>';
 
 }
 return __p
@@ -61,7 +61,7 @@ this["JST"]["app/scripts/templates/playGame_game_over.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="text-center">\r\n    <p>Game Over! Sorry, that\'s not the correct answer...</p>\r\n    <p>Your score: ' +
+__p += '<div class="text-center game-over">\r\n    <p>Game Over! Sorry, that\'s not the correct answer...</p>\r\n    <p>Your score: ' +
 ((__t = ( score )) == null ? '' : __t) +
 ', your time ' +
 ((__t = ( duration )) == null ? '' : __t) +
@@ -85,7 +85,7 @@ this["JST"]["app/scripts/templates/playGame_loading.ejs"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="text-center">\r\n\t<p>\r\n\t\tLoading...\r\n\t</p>\r\n</div>';
+__p += '<div class="text-center loading">\r\n\t<p>\r\n\t\tLoading...\r\n\t</p>\r\n</div>';
 
 }
 return __p

@@ -20,11 +20,16 @@ DaMovieQuizz = (function() {
         Views: {},
         Routers: {},
         page: null,
+        game: null,
 
         init: function () {
             'use strict';
+
             // initialize page
             this.page = new DaMovieQuizz.Models.Page();
+
+            //initialize game
+            this.game = new DaMovieQuizz.Models.Game();
 
             // initialize menu
             ViewsFactory.menu();

@@ -47,7 +47,7 @@ function formatDate(timestamp){
             //set listeners
             this.listenTo(this.model, 'change:score', this.render);
             this.listenTo(this.model, 'change:state', this.render);
-            this.listenTo(this.model, 'change:loading', this.renderLoading);
+            this.listenTo(this.model, 'change:loading', this.render);
 
             // inner view timer
             this.inner = new DaMovieQuizz.Views.TimerInnerView({ model : this.model });
@@ -55,36 +55,30 @@ function formatDate(timestamp){
         },
 
         render: function(){
-            $("#timer").empty();
-            if(this.model.get('state') == 0){
-                this.$el.html(this.template_init({}));
-            }else if (this.model.get('state') == 1){
-                this.$el.html(this.template_play({ 
-                                                    score: this.model.get('score'), 
-                                                    movieTitle: this.model.get('question').get('movie').name,
-                                                    movieImage: this.model.get('question').get('movie').image,
-                                                    actorName: this.model.get('question').get('actor').name,
-                                                    actorImage: this.model.get('question').get('actor').image,
-                                                }));
-                $("#timer").append(this.inner.$el);
-                this.inner.render();
-            }else if(this.model.get('state') == 2){
-                this.$el.html(this.template_game_over({
-                                                         score: this.model.get('score'), 
-                                                         duration: formatDate(this.model.getDuration()),
-                                                     }));
+            if(!this.model.get('loading')){
+                $("#timer").empty();
+                if(this.model.get('state') == 0){
+                    this.$el.html(this.template_init({}));
+                }else if (this.model.get('state') == 1){
+                    this.$el.html(this.template_play({ 
+                                                        score: this.model.get('score'), 
+                                                        movieTitle: this.model.get('question').get('movie').name,
+                                                        movieImage: this.model.get('question').get('movie').image,
+                                                        actorName: this.model.get('question').get('actor').name,
+                                                        actorImage: this.model.get('question').get('actor').image,
+                                                    }));
+                    $("#timer").append(this.inner.$el);
+                    this.inner.render();
+                }else if(this.model.get('state') == 2){
+                    this.$el.html(this.template_game_over({
+                                                             score: this.model.get('score'), 
+                                                             duration: formatDate(this.model.getDuration()),
+                                                         }));
+                }else{
+                     this.$el.html(this.template_error());
+                }
             }else{
-                 this.$el.html(this.template_error());
-            }
-
-            return this;
-        },
-
-        renderLoading: function(){
-            if(this.model.get('loading')){
-                this.$el.html(this.template_loading());
-            }else{
-                this.render();
+                 this.$el.html(this.template_loading());
             }
 
             return this;
@@ -143,7 +137,6 @@ function formatDate(timestamp){
 
         render: function() {
             if (this.model.get('state') == 1){
-                console.info("View Play Game -- Render timer")
                 // only if we are in game mode
                 var object = this;
 

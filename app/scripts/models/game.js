@@ -22,7 +22,7 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
         },
 
         initialize: function(){
-            
+            this.loading = false;
         },
 
         /*
@@ -126,7 +126,6 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
         */
 
         getDuration: function(){
-            console.info("Model Game -- Get Duration")
             if(this.get('state') == 1){
                 return Math.floor((Date.now() - this.get('dateStart'))/1000);
             }else if(this.get('state') == 2){

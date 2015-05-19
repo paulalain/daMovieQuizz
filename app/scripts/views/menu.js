@@ -23,7 +23,6 @@ DaMovieQuizz.Views = DaMovieQuizz.Views || {};
 
         render: function(){
             console.info("Menu view -- Render");
-            console.info(this.model);
             this.$el.html(this.template({ page : this.model.get('page') }));
         }
     });
