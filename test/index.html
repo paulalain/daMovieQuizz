@@ -20,20 +20,30 @@
     <!-- endbower -->
 
     <!-- include source files here... -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/lodash/dist/lodash.compat.js"></script>
+    <script src="bower_components/backbone/backbone.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="js/backbone.localStorage-min.js"></script>
+    <script src="scripts/main.js"></script>
+    <script src="scripts/templates.js"></script>
+    <script src="scripts/views/menu.js"></script>
+    <script src="scripts/models/game.js"></script>
+    <script src="scripts/models/question.js"></script>
+    <script src="scripts/models/movieApi.js"></script>
+    <script src="scripts/models/movie.js"></script>
+    <script src="scripts/views/playGame.js"></script>
+    <script src="scripts/routes/router.js"></script>
+    <script src="scripts/models/highscore.js"></script>
+    <script src="scripts/collections/highscores.js"></script>
+    <script src="scripts/views/highscores.js"></script>
+    <script src="scripts/models/page.js"></script>
 
-    <script src="views/menu.js"></script>
-    <script src="models/game.js"></script>
-    <script src="models/question.js"></script>
-    <script src="models/movie.js"></script>
-    <script src="models/movieApi.js"></script>
-    <script src="views/playGame.js"></script>
-    <script src="routers/router.js"></script>
-    <script src="models/highscore.js"></script>
-    <script src="collections/highscores.js"></script>
-    <script src="views/highscores.js"></script>
-    <script src="models/page.js"></script>
     <!-- include spec files here... -->
     <script src="spec/test.js"></script>
+    <script src="models/movie.spec.js"></script>
+    <script src="models/question.spec.js"></script>
+    <script src="models/game.spec.js"></script>
 
     <script>mocha.run()</script>
 </body>

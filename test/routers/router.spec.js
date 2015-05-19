@@ -8,7 +8,7 @@ describe('Router Router', function () {
     });
 
     it('index route', function(){
-
+    	assert(true);
     });
 
 });

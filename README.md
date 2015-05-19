@@ -17,15 +17,14 @@ Install:
  * `grunt build`
 
 Launch server:
-
  * `npm install`
  * `bower install`
  * `grunt serve`
 
 Tests:
-	* `cd test`
-	* `bower install`
-	* `grunt test`
+ * `cd test`
+ * `bower install`
+ * `grunt test`
 
 ========
 

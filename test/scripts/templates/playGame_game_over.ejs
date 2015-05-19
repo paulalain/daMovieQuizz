@@ -1,0 +1,18 @@
+<div class="text-center game-over">
+    <p>Game Over! Sorry, that's not the correct answer...</p>
+    <% if(isHighscore){ %>
+		<p class="highscore-winner">Congratulations! You are in the top ten!</p>
+		<% if (!isScoreSubmitted){ %>
+			<form class="form-inline" action="javascript:void(0)">
+				<div class="form-group">
+					<input type="text" class="form-control" id="inputPseudo" placeholder="Pseudo">
+				</div>
+				<button type="submit" class="btn btn-default" id="submitScore">Submit your score</button>
+			</form>
+		<% }else{ %>
+			<p>The highscore has been submitted.</p>
+		<% } %>
+    <% } %>
+    <p class="finalScore">Your score: <%= score %>, your time <%= duration %></p>
+    <button id="restart" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-repeat"> </span> Play again</button>
+</div>
