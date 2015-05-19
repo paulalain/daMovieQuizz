@@ -6,5 +6,4 @@ describe('Highscore Model', function () {
     beforeEach(function () {
         this.HighscoreModel = new DaMovieQuizz.Models.Highscore();
     });
-
 });

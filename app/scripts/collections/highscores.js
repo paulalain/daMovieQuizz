@@ -35,7 +35,6 @@ DaMovieQuizz.Collections = DaMovieQuizz.Collections || {};
             console.info("Collection Highscores - isHighscore")
             var highscore = this.first(1);
             if(highscore && highscore[0]){
-                console.info(score > highscore[0].get('score'));
                 return score > highscore[0].get('score');
             }else{
                 console.info('true');
