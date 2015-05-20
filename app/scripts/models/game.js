@@ -36,15 +36,20 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
 
             this.set('loading', true);
             var model = this;
-            if(this.get('state') == 0){
-                this.getNewQuestion(function(){
-                    model.set('dateStart', Date.now());
-                    model.set('state', 1);
-                    model.set('loading', false);
-                })
-            }else{
-                console.info("Model Game -- Game is already launched");
-            }
+            return new Promise(function(resolve, reject){
+                if(model.get('state') == 0){
+                    model.getNewQuestion()
+                        .then(function(q){
+                            model.set('dateStart', Date.now());
+                            model.set('state', 1);
+                            model.set('loading', false);
+                            resolve(q);
+                        });
+                }else{
+                    console.info("Model Game -- Game is already launched");
+                    reject();
+                }
+            });
         },
         
         /*
@@ -55,12 +60,17 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
 
         stopGame: function(){
             console.info("Model Game -- Stop Game");
-            if(this.get('state') == 1){
-                this.set('dateEnd', Date.now());
-                this.set('state', 2);
-            }else{
-                console.info("Model Game -- Game is not launched");
-            }
+            var model = this;
+            return new Promise(function(resolve, reject){
+                if(model.get('state') == 1){
+                    model.set('dateEnd', Date.now());
+                    model.set('state', 2);
+                    resolve(model);
+                }else{
+                    console.info("Model Game -- Game is not launched");
+                    reject();
+                }
+            });
         },
 
         /*
@@ -72,19 +82,23 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
 
         restartGame: function(){
             console.info("Model Game -- Retart Game");
-
-            this.set('loading', true);
             var model = this;
-            if(this.get('state') == 2 || this.get('state') == 3){
-                this.getNewQuestion(function(){
-                    model.set('dateStart', Date.now());
-                    model.set('score', 0);
-                    model.set('state', 1);
-                    model.set('loading', false);
-                });
-            }else{
-                console.info("Model Game -- Game is not over");
-            }
+            return new Promise(function(resolve, reject){
+                model.set('loading', true);
+                if(model.get('state') == 2 || model.get('state') == 3){
+                    model.getNewQuestion().
+                        then(function(q){
+                            model.set('dateStart', Date.now());
+                            model.set('score', 0);
+                            model.set('state', 1);
+                            model.set('loading', false);
+                            resolve(q);
+                        });
+                }else{
+                    console.info("Model Game -- Game is not over");
+                    reject();
+                }
+            });
         },
 
         /*
@@ -93,16 +107,19 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
             In case of error, state is set to 3 (error).
         */
 
-        getNewQuestion: function(callback){
+        getNewQuestion: function(){
             console.info("Model Game -- get New Question");
             var model = this;
-            var question = new DaMovieQuizz.Models.Question();
-            question.fetchNewQuestion().then(function(q){
-                model.set('question', q);
-                callback();
-            }).catch(function(error){
-                console.info(error);
-                model.set('state', 3);
+            return new Promise(function(resolve, reject){
+                var question = new DaMovieQuizz.Models.Question();
+                question.fetchNewQuestion().then(function(q){
+                    model.set('question', q);
+                    resolve(q);
+                }).catch(function(error){
+                    console.info(error);
+                    model.set('state', 3);
+                    reject();
+                });
             });
         },
 
@@ -114,9 +131,13 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
         incrementScoreAndFetchNewQuestion: function(){
             this.set('loading', true);
             var model = this;
-            this.getNewQuestion(function(){
-                model.set('score', model.get('score')+1);
-                model.set('loading', false);
+            return new Promise(function(resolve, reject){
+                model.getNewQuestion().
+                    then(function(q){
+                        model.set('score', model.get('score')+1);
+                        model.set('loading', false);
+                        resolve(q);
+                    });
             });
         },
 
