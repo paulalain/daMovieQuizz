@@ -1,7 +1,7 @@
 /*global DaMovieQuizz, $*/
 
 //if debug mode, console log are displayed
-var DEBUG = true;
+var DEBUG = false;
 
 if(!DEBUG){
     if(!window.console) window.console = {};
