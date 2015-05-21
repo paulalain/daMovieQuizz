@@ -113,25 +113,14 @@ function formatDate(timestamp){
 
         clickYes: function() {
             console.info("View Game -- Yes Clicked")
-            this.clickAnswer(true);
+            this.model.validateAnswer(true);
         },
 
         clickNo: function() {
             console.info("View Game -- No Clicked")
-            this.clickAnswer(false);
+            this.model.validateAnswer(false);
         },
 
-        clickAnswer: function(value){
-            console.info("PlayGame View -- Click Answer");
-            if(this.model.get('question').validateAnswer(value)){
-                // continue
-                console.info("PlayGame View -- Correct Answer")
-                this.model.incrementScoreAndFetchNewQuestion();
-            }else{
-                console.info("PlayGame View -- Wrong Answer")
-                this.model.stopGame();
-            }
-        },
         saveScore: function(){
             console.info("View Game -- Save score")
             //only in game over state

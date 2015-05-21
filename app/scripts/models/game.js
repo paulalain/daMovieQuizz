@@ -101,6 +101,27 @@ DaMovieQuizz.Models = DaMovieQuizz.Models || {};
             });
         },
 
+        validateAnswer: function(value){
+            console.info("Model Game -- validate the question");
+            var model = this;
+            return new Promise(function(resolve, reject){
+                if(model.get('question').validateAnswer(value)){
+                    // continue
+                    console.info("Correct Answer")
+                    model.incrementScoreAndFetchNewQuestion()
+                    .then(function(g){
+                        resolve(model);
+                    }, function(error){
+                        reject(error);
+                    })
+                }else{
+                    console.info("Wrong Answer")
+                    model.stopGame();
+                    resolve(model);
+                }
+            });
+        },
+
         /*
         getNewQuestion : 
             Method is called toget a new question

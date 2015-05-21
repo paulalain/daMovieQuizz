@@ -29,8 +29,8 @@ DaMovieQuizz = (function() {
             // initialize page
             this.page = new DaMovieQuizz.Models.Page();
 
-            //initialize game one
-            this.game = new DaMovieQuizz.Models.Game();
+            //initialize game
+            this.game = gameFactory("survivor");
 
             //initialize highscore once
             this.highscores = new DaMovieQuizz.Collections.Highscores();
@@ -46,7 +46,7 @@ DaMovieQuizz = (function() {
         }
     };
     
-
+    // static views
     var ViewsFactory = {
         menu: function() {
             if(!this.menuView) {
@@ -57,6 +57,20 @@ DaMovieQuizz = (function() {
             }
             return this.menuView;
         }
+    };
+
+    // list of games in a factory
+    var gameFactory = function(gameName) {
+        if(gameName == "survivor"){
+            if(!this.gameSurvivor){
+                return new DaMovieQuizz.Models.Game();
+            }
+
+            return this.gameSurvivor;
+        }else{
+            return null;
+        }
+        // implements othe game here (they have to extends DaMovieQuizz.Models.Game
     };
 
     return api;
